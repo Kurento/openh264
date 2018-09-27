@@ -11,5 +11,6 @@ Package: openh264
 Architecture: any
 Depends:
  ${shlibs:Depends},
- ${misc:Depends}
+ ${misc:Depends},
+ wget
 Description: OpenH264 library
