@@ -12,5 +12,6 @@ Architecture: any
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
+ bzip2,
  wget
 Description: OpenH264 library
