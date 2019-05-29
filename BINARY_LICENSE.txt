@@ -1,31 +1,3 @@
-#!/usr/bin/env sh
-
-
-
-# Shell setup
-# -----------
-
-# Bash options for strict error checking
-set -o errexit -o nounset
-
-OPENH264_VERSION="1.8.0"
-OPENH264_SERVER="http://ciscobinary.openh264.org"
-
-LIB_VERSION="4"
-LIB_FILE="libopenh264-${OPENH264_VERSION}-linux64.${LIB_VERSION}.so"
-LIB_PATH="/usr/lib/x86_64-linux-gnu/libopenh264.so.${LIB_VERSION}"
-LIB_LINK="/usr/lib/x86_64-linux-gnu/libopenh264.so"
-
-BZ2_FILE="libopenh264-${OPENH264_VERSION}-linux64.${LIB_VERSION}.so.bz2"
-BZ2_HASH="0b879e4ba40df21b44c2531d343b6fb1f44b35176d4780ecb48dcab7f75f6779"
-
-[ -f "$BZ2_FILE" ] && rm "$BZ2_FILE"
-[ -f "$LIB_FILE" ] && rm "$LIB_FILE"
-[ -f "$LIB_PATH" ] && { rm "$LIB_PATH"; rm "$LIB_LINK"; }
-
-echo "+ Installing this package implies acceptance of the following license:"
-
-echo "
 -------------------------------------------------------
 About The Cisco-Provided Binary of OpenH264 Video Codec
 -------------------------------------------------------
@@ -64,7 +36,7 @@ The binary form of this Software is distributed by Cisco under the AVC/H.264 Pat
 
 THIS PRODUCT IS LICENSED UNDER THE AVC PATENT PORTFOLIO LICENSE FOR THE PERSONAL USE OF A CONSUMER OR OTHER USES IN WHICH IT DOES NOT RECEIVE REMUNERATION TO (i) ENCODE VIDEO IN COMPLIANCE WITH THE AVC STANDARD ('AVC VIDEO') AND/OR (ii) DECODE AVC VIDEO THAT WAS ENCODED BY A CONSUMER ENGAGED IN A PERSONAL ACTIVITY AND/OR WAS OBTAINED FROM A VIDEO PROVIDER LICENSED TO PROVIDE AVC VIDEO.  NO LICENSE IS GRANTED OR SHALL BE IMPLIED FOR ANY OTHER USE.  ADDITIONAL INFORMATION MAY BE OBTAINED FROM MPEG LA, L.L.C. SEE HTTP://WWW.MPEGLA.COM
 
-Accordingly, please be advised that content providers and broadcasters using AVC/H.264 in their service may be required to obtain a separate use license from MPEG LA, referred to as \"(b) sublicenses\" in the SUMMARY OF AVC/H.264 LICENSE TERMS from MPEG LA found at http://www.openh264.org/mpegla
+Accordingly, please be advised that content providers and broadcasters using AVC/H.264 in their service may be required to obtain a separate use license from MPEG LA, referred to as "(b) sublicenses" in the SUMMARY OF AVC/H.264 LICENSE TERMS from MPEG LA found at http://www.openh264.org/mpegla
 
 ---------------------------------------------
 AVC/H.264 Patent Portfolio License Conditions
@@ -78,48 +50,10 @@ In addition, the Cisco-provided binary of this Software is licensed under Cisco'
 
 3. Third party software, in the location where end users can control the use of the Cisco-provided binary, must display the following text:
 
-       \"OpenH264 Video Codec provided by Cisco Systems, Inc.\"
+       "OpenH264 Video Codec provided by Cisco Systems, Inc."
 
 4.  Any third-party software that makes use of the Cisco-provided binary must reproduce all of the above text, as well as this last condition, in the EULA and/or in another location where licensing information is to be presented to the end user.
 
 
 
                           v1.0
-"
-
-echo "+ Wait 3 seconds before continuing"
-
-sleep 3
-
-echo "+ Download OpenH264 library from Cisco server"
-
-wget "${OPENH264_SERVER}/${BZ2_FILE}"
-
-echo "+ Extract and install OpenH264 library"
-
-echo "$BZ2_HASH  $BZ2_FILE" | sha256sum --check >/dev/null 2>&1 || {
-    echo "SHA256 mismatch on $BZ2_FILE"
-    exit 1
-}
-
-bzip2 --decompress --keep "$BZ2_FILE"
-
-cp "$LIB_FILE" "$LIB_PATH"
-ln -s "$LIB_PATH" "$LIB_LINK"
-
-echo "$LIB_PATH" >>/var/lib/dpkg/info/openh264.list
-echo "$LIB_LINK" >>/var/lib/dpkg/info/openh264.list
-
-# CleanupAS IS
-rm -f "$BZ2_FILE"
-rm -f "$LIB_FILE"
-
-echo "libopenh264 ${LIB_VERSION} openh264" >>/var/lib/dpkg/info/openh264.shlibs
-
-if [ "$1" = "configure" ]; then
-    ldconfig
-fi
-
-echo "+ Done!"
-
-exit 0
