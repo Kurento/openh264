@@ -1,0 +1,16 @@
+External repositories
+=====================
+
+- Upstream: https://github.com/cisco/openh264
+
+
+
+Notes about this package
+========================
+
+The maximum version of OpenH264 that we can build is 1.5.0. Cisco introduced a
+breaking change starting from 1.6.0, which means our fork of gst-plugins-bad
+won't compile with that version.
+
+In order to update OpenH264 further than 1.5.0, we need to drop our old
+GStreamer forks and move to more up to date versions.

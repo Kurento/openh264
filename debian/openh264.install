@@ -1,2 +1,2 @@
-wels/*.h /usr/include/wels/
+codec/api/svc/*.h /usr/include/wels/
 openh264.pc /usr/lib/x86_64-linux-gnu/pkgconfig/

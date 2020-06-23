@@ -1,13 +1,12 @@
-openh264 (1.4.0-1kurento1) UNRELEASED; urgency=medium
+openh264 (1.5.0-0kurento1) UNRELEASED; urgency=medium
 
   * debian/control: Add install dependency: 'wget'
   * debian/control: Add install dependency: 'bzip2'
 
- -- Juan Navarro <juan.navarro@gmx.es>  Wed, 06 Feb 2019 11:41:41 +0100
+ -- Juan Navarro <juan.navarro@gmx.es>  Tue, 23 Jun 2020 17:22:07 +0200
 
 openh264 (1.4.0) testing; urgency=medium
 
   * Initial Release.
 
  -- Kurento Maintenance Team <kurento@googlegroups.com>  Tue, 02 Jun 2015 12:39:19 +0200
-
