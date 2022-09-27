@@ -1,16 +1,18 @@
 Source: openh264
+Maintainer: Kurento <info@kurento.org>
 Priority: optional
-Maintainer: Kurento <kurento@googlegroups.com>
-Build-Depends: debhelper (>= 9),
+Build-Depends: debhelper (>= 12),
  cmake,
  pkg-config
-Standards-Version: 4.0.0
+Standards-Version: 4.4.1
+Homepage: https://www.kurento.org/
+Vcs-Browser: https://github.com/Kurento/openh264
+Vcs-Git: https://github.com/Kurento/openh264.git
 
 Package: openh264
-Section: libs
 Architecture: any
-Depends: ${misc:Depends},
- ${shlibs:Depends},
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends},
  bzip2,
  wget
 Description: OpenH264 Video Codec provided by Cisco Systems, Inc.

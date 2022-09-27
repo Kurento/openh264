@@ -1,0 +1,28 @@
+Project details
+===============
+
+This debian/ folder has been created from scratch with `dh_make`:
+
+    DEBFULLNAME='Kurento' \
+    DEBEMAIL='info@kurento.org' \
+    dh_make --library --native --yes \
+        --packagename "openh264_1.0.0-0kurento1" \
+        --copyright apache
+
+Related sources:
+* Upstream: https://github.com/cisco/openh264
+* Debian/Ubuntu package: https://salsa.debian.org/debian/openh264
+
+
+
+Build method
+============
+
+The usual Debian packaging methods are followed, by defining a `debian/rules`
+file which simply calls `dh`, part of the Debhelper tooling. There is, however,
+nothing for `dh` to configure or run: this package works by downloading and
+installing OpenH264 binaries at installation time.
+
+Given the license of OpenH264, usages of the library must download an official
+tarball and install it directly from Cisco servers. So there is actually nothing
+to build here for this package.
