@@ -97,7 +97,7 @@ sleep 3
 
 echo "+ Download OpenH264 library from Cisco server"
 
-wget "${OPENH264_SERVER}/${DOWNLOAD_FILE}"
+wget --timeout 60 "${OPENH264_SERVER}/${DOWNLOAD_FILE}"
 
 echo "$DOWNLOAD_SHA256  $DOWNLOAD_FILE" | sha256sum --check >/dev/null 2>&1 || {
     echo "SHA256 mismatch on $DOWNLOAD_FILE"
